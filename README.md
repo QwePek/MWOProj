@@ -1,1 +1,2 @@
 # MWOProj
+Jeszcze nie skończone
