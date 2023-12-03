@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Delete book";
+}
+<h1>Delete new book</h1>
+
+<form id="deleteBookForm">
+    <label for="bookId">Book ID:</label>
+    <input type="number" name="id" id="bookId" required />
+    <button type="button" onclick="deleteBook()">Delete Book</button>
+</form>
+
+<h2 id="result"></h2>
+
+<script>
+    function deleteBook() {
+        var bookId = $("#bookId").val();
+        var requestData = parseInt(bookId);
+
+        var resultElement = document.getElementById("result");
+        resultElement.innerText = "...";
+        resultElement.style.color = "black";
+
+        fetch("@Url.Action("DeleteBookForm", "Book")", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(result => {
+            var resultElement = document.getElementById("result");
+            resultElement.innerText = result.message + " with ID: " + bookId;
+            resultElement.style.color = result.success ? "green" : "red";
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+</script>

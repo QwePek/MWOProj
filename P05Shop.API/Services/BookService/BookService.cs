@@ -1,10 +1,7 @@
-using Bogus;
 using P05Shop.API.Models;
 using P06Shop.Shared;
 using P06Shop.Shared.Services.BookService;
-using P06Shop.Shared.Services.ProductService;
 using P06Shop.Shared.Shop;
-using P07Shop.DataSeeder;
 
 namespace P05Shop.API.Services.ProductService
 {
@@ -141,7 +138,7 @@ namespace P05Shop.API.Services.ProductService
                 {
                     res.Data = null;
                     res.Success = false;
-                    res.Message = "Book couldn't be added - ID cannot be < 0";
+                    res.Message = "Book couldn't be deleted - ID cannot be < 0";
                     return res;
                 }
 
@@ -164,6 +161,8 @@ namespace P05Shop.API.Services.ProductService
                 res.Success = false;
                 res.Message = "Error while deleting book: " + ex.Message;
             }
+
+            Console.WriteLine(res.Success + " | " + res.Message + " " + ID);
             return res;
         }
 

@@ -1,0 +1,39 @@
+﻿@using P06Shop.Shared.Shop
+@using P06Shop.Shared
+
+@model ServiceResponse<List<Book>>
+@{
+    ViewData["Title"] = "Get All books";
+}
+<h1 style="color: #333;">Show all books</h1>
+
+@if (Model != null && Model.Data != null)
+{
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">ID</th>
+                <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">Title</th>
+                <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">Description</th>
+                <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">Pages</th>
+                <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left;">Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Data)
+            {
+                <tr style="padding: 10px; border-bottom: 1px solid #ddd; text-align: left; background-color: #fff;" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='';">
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Description</td>
+                    <td>@book.Pages</td>
+                    <td>@book.ReleaseDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="color: #777;">No books available.</p>
+}

@@ -1,0 +1,35 @@
+﻿@using P06Shop.Shared.Shop
+@using P06Shop.Shared
+@model ServiceResponse<Book>
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<h1>Book Details</h1>
+
+@if (Model.Data != null)
+{
+    <dl>
+        <dt>ID:</dt>
+        <dd id="retID">@Model.Data.Id</dd>
+
+        <dt>Title:</dt>
+        <dd id="retTitle">@Model.Data.Title</dd>
+
+        <dt>Description:</dt>
+        <dd id="retDescr">@Model.Data.Description</dd>
+
+        <dt>Pages:</dt>
+        <dd id="retPages">@Model.Data.Pages</dd>
+
+        <dt>Release Date:</dt>
+        <dd id="retDate">@Model.Data.ReleaseDate</dd>
+    </dl>
+}
+else
+{
+    <h3>Book not found.</h3>
+    <p  id="retMsg">@Model.Message</p>
+}
+
+<a href="@Url.Action("BookForm", "Book")" class="btn btn-primary">Powrót</a>

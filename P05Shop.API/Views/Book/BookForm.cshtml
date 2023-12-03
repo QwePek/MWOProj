@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Get book";
+}
+<h1>Get book</h1>
+<form action="@Url.Action("GetBook", "Book")" method="get">
+    <label for="bookId">Book ID:</label>
+    <input type="number" name="id" id="bookId" required />
+    <button type="submit">Get Book</button>
+</form>

@@ -6,7 +6,7 @@ using P06Shop.Shared.Shop;
 
 namespace P05Shop.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/")]
     [ApiController]
     public class BookController : Controller
     {
@@ -17,46 +17,63 @@ namespace P05Shop.API.Controllers
             _bookService = bookService;
         }
 
+        public async Task<ActionResult<ServiceResponse<List<Book>>>> Index()
+        {
+            var result = await _bookService.GetBookAsync();
+            return View("Index", result);
+        }
+
+        [HttpGet("AddBook")]
+        public IActionResult AddBook()
+        {
+            return View("AddBook");
+        }
+
+        [HttpGet("BookForm")]
+        public IActionResult BookForm()
+        {
+            return View("BookForm");
+        }
+
+        [HttpGet("DeleteBook")]
+        public IActionResult DeleteBook()
+        {
+            return View("DeleteBook");
+        }
+
+        [HttpGet("UpdateBook")]
+        public IActionResult UpdateBook()
+        {
+            return View("UpdateBook");
+        }
+
         //CRUD
         [HttpPost("AddBook")]
-        public async Task<IActionResult> AddNewBook([FromBody] Book book)
+        public async Task<ActionResult<ServiceResponse<Book>>> AddNewBook([FromBody] Book book)
         {
             var res = await _bookService.AddBookAsync(book);
-            if (res.Success)
-                return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
-            else
-                return StatusCode(500, $"Internal server error: {res.Message}");
+            return res;
         }
 
-        [HttpGet("GetBook/{id}")]
-        public async Task<ActionResult<ServiceResponse<Book>>> GetBook([FromRoute] int id)
+        [HttpGet("GetBook")]
+        public async Task<ActionResult<ServiceResponse<Book>>> GetBook(int id)
         {
             var result = await _bookService.GetBookByIDAsync(id);
-            if (result.Success)
-                return Ok(result);
-            else
-                return StatusCode(500, $"Internal server error: {result.Message}");
+            return View("GetBook", result);
         }
 
-        [HttpDelete("DeleteBook/{id}")]
-        public async Task<ActionResult<ServiceResponse<Book>>> DeleteBook([FromRoute] int id)
+        [HttpDelete("DeleteBookForm")]
+        public async Task<ActionResult<ServiceResponse<Book>>> DeleteBookForm([FromBody] int id)
         {
             var result = await _bookService.DeleteBookAsync(id);
-            if (result.Success)
-                return Ok(result);
-            else
-                return StatusCode(500, $"Internal server error: {result.Message}");
+            return result;
         }
 
-        [HttpPut("PutBook/{id}")]
-        public async Task<ActionResult<ServiceResponse<Book>>> ModificateBook([FromRoute] int id, Book book)
+        [HttpPut("UpdateBook")]
+        public async Task<ActionResult<ServiceResponse<Book>>> ModificateBook([FromBody] Book book)
         {
-            book.Id = id;
             var result = await _bookService.UpdateBookAsync(book);
-            if (result.Success)
-                return Ok(result);
-            else
-                return StatusCode(500, $"Internal server error: {result.Message}");
+            return result;
         }
     }
 }
