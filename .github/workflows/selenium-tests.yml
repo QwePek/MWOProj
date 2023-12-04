@@ -17,9 +17,7 @@ jobs:
         mysql-version: "8.0"
         root-password: root
         password: root
-
-    - run: mysql -uroot -e 'SELECT version()'
-    
+        
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
