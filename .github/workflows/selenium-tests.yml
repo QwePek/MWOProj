@@ -28,8 +28,9 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run app
-      run: cd .\P05Shop.API\
-            dotnet run
+      run: | 
+          cd .\P05Shop.API\
+          dotnet run
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
