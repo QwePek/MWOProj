@@ -16,6 +16,8 @@ public class SeleniumTests
     public void PageNavigationTest()
     {
         driver.Navigate().GoToUrl("http://localhost:7230");
+        Console.WriteLine(driver.Url);
+        Console.WriteLine(driver.PageSource);
         Assert.IsTrue(driver.Title.Contains("Get All books"));
 
         driver.Navigate().GoToUrl("http://localhost:7230/AddBook");
