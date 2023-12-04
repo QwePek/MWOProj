@@ -16,10 +16,7 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
-
-    - name: Go to project directory
-      run: cd .\P05Shop.API\
+        dotnet-version: 7.x
         
     - name: Restore dependencies
       run: dotnet restore
@@ -27,10 +24,20 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/app
+      
     - name: Run app
       run: | 
           cd .\P05Shop.API\
-          dotnet run
+          cmd /c "start dotnet run --urls=http://localhost:5093"
+          dotnet test
+          exit 1
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+    - name: Report error
+      if: failure()
+      run: |
+        echo "xpp"
