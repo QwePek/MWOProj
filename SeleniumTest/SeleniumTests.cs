@@ -9,6 +9,8 @@ public class SeleniumTests
     [SetUp]
     public void Initialize()
     {
+        ChromeOptions options = new ChromeOptions();
+        options.AddArguments("ignore-certificate-errors");
         driver = new ChromeDriver();
     }
 
