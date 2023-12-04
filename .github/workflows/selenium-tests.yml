@@ -25,7 +25,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/app
+      run: dotnet publish -c Release -o Files\dotnet/app
       
     - name: Run app
       run: | 
