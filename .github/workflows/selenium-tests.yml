@@ -34,10 +34,7 @@ jobs:
           cd ..
           dotnet test
           exit 1
-      
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-
+          
     - name: Report error
       if: failure()
       run: |
