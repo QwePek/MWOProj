@@ -19,12 +19,12 @@ jobs:
         dotnet-version: 7.x
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet workload restore
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release
 
-    - name: dotnet publish
+    - name: Publish
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/app
       
     - name: Run app
