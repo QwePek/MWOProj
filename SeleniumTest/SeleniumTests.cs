@@ -15,21 +15,21 @@ public class SeleniumTests
     [Test]
     public void PageNavigationTest()
     {
-        driver.Navigate().GoToUrl("http://localhost:7230");
+        driver.Navigate().GoToUrl("https://localhost:7230");
         Console.WriteLine(driver.Url);
         Console.WriteLine(driver.PageSource);
         Assert.IsTrue(driver.Title.Contains("Get All books"));
 
-        driver.Navigate().GoToUrl("http://localhost:7230/AddBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/AddBook");
         Assert.IsTrue(driver.Title.Contains("Add book"));
 
-        driver.Navigate().GoToUrl("http://localhost:7230/UpdateBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/UpdateBook");
         Assert.IsTrue(driver.Title.Contains("Update book"));
 
-        driver.Navigate().GoToUrl("http://localhost:7230/DeleteBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/DeleteBook");
         Assert.IsTrue(driver.Title.Contains("Delete book"));
 
-        driver.Navigate().GoToUrl("http://localhost:7230/BookForm");
+        driver.Navigate().GoToUrl("https://localhost:7230/BookForm");
         Assert.IsTrue(driver.Title.Contains("Get book"));
     }
 
@@ -37,7 +37,7 @@ public class SeleniumTests
     public void addBookTest()
     {
         // Nawi¹zanie do strony Swagger
-        driver.Navigate().GoToUrl("http://localhost:7230/AddBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/AddBook");
         waitForLoad();
 
         var ID = driver.FindElement(By.Id("bookId"));
@@ -65,7 +65,7 @@ public class SeleniumTests
     [Test]
     public void bookGetTest()
     {
-        driver.Navigate().GoToUrl("http://localhost:7230/BookForm");
+        driver.Navigate().GoToUrl("https://localhost:7230/BookForm");
         waitForLoad();
 
         IWebElement inputIDField = driver.FindElement(By.Id("bookId"));
@@ -94,7 +94,7 @@ public class SeleniumTests
     public void getEmptyBookTest()
     {
         // Nawi¹zanie do strony Swagger
-        driver.Navigate().GoToUrl("http://localhost:7230/BookForm");
+        driver.Navigate().GoToUrl("https://localhost:7230/BookForm");
         waitForLoad();
 
         IWebElement inputIDField = driver.FindElement(By.Id("bookId"));
@@ -113,7 +113,7 @@ public class SeleniumTests
     [Test]
     public void deleteBookTest()
     {
-        driver.Navigate().GoToUrl("http://localhost:7230/DeleteBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/DeleteBook");
         waitForLoad();
 
         IWebElement inputIDField = driver.FindElement(By.Id("bookId"));
@@ -133,7 +133,7 @@ public class SeleniumTests
     public void bookUpdateTest()
     {
         // Nawi¹zanie do strony Swagger
-        driver.Navigate().GoToUrl("http://localhost:7230/UpdateBook");
+        driver.Navigate().GoToUrl("https://localhost:7230/UpdateBook");
         waitForLoad();
 
         var ID = driver.FindElement(By.Id("bookId"));
@@ -158,7 +158,7 @@ public class SeleniumTests
         Assert.AreEqual("Book updated successfully with ID: 1000", result.Text);
 
         //Sprawdzenie czy dodalo sie odpowiednio
-        driver.Navigate().GoToUrl("http://localhost:7230/BookForm");
+        driver.Navigate().GoToUrl("https://localhost:7230/BookForm");
         waitForLoad();
 
         IWebElement inputIDField = driver.FindElement(By.Id("bookId"));
