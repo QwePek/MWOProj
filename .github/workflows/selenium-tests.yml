@@ -31,6 +31,7 @@ jobs:
       run: | 
           cd .\P05Shop.API\
           cmd /c "start dotnet run --urls=http://localhost:5093"
+          cd ..
           dotnet test
           exit 1
       
