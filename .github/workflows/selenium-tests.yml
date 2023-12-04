@@ -23,20 +23,11 @@ jobs:
       
     - name: Build
       run: dotnet build --configuration Release
-
-    - name: Start MySQL
-      uses: samin/mysql-action@v1.3
-      with:
-        mysql database: 'testdatabase'
-        mysql root password: 'root'
-        mysql user: 'root'
-        mysql password: 'root'
-
+      
     - name: Add Migration
       run: |
           cd .\P05Shop.API\
-          dotnet tool install --global dotnet-ef
-          # dotnet tool update --global dotnet-ef
+          dotnet tool restore
           dotnet ef migrations add 20231106004814_ReleaseDateRequired
           dotnet ef database update
           cd ..
