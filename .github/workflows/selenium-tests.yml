@@ -29,9 +29,10 @@ jobs:
       
     - name: Run app
       run: | 
-          cd P05Shop.API
-          dotnet run --urls=https://localhost:7230;http://localhost:5093
-          # cmd /c "start dotnet run --urls=https://localhost:7230;http://localhost:5093"
+          cd .\P05Shop.API\
+          cmd /c "start dotnet run --urls=https://localhost:7230;"
+          ping 127.0.0.1 -n 10
+          netstat -a
           cd ..
           dotnet test
           exit 1
