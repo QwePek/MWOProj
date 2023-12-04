@@ -12,7 +12,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: "8.0"
+        root-password: root
+        password: root
+        
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
@@ -23,6 +28,14 @@ jobs:
       
     - name: Build
       run: dotnet build --configuration Release
+      
+    - name: Add Migration
+      run: |
+          cd .\P05Shop.API\
+          dotnet tool install --global dotnet-ef
+          dotnet ef migrations add 20231106004814_ReleaseDateRequired
+          dotnet ef database update
+          cd ..
 
     - name: Publish
       run: dotnet publish -c Release -o Files\dotnet/app
@@ -31,8 +44,7 @@ jobs:
       run: | 
           cd .\P05Shop.API\
           cmd /c "start dotnet run --urls=https://localhost:7230;"
-          ping 127.0.0.1 -n 10
-          netstat -a
+          ping 127.0.0.1 -n 10 > nul
           cd ..
           dotnet test
           exit 1
