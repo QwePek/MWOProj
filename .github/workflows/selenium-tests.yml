@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -45,8 +45,7 @@ jobs:
       run: | 
           cd .\P05Shop.API\
           cmd /c "start dotnet run --urls=https://localhost:7230;"
-          sleep 10
-          # ping 127.0.0.1 -n 10
+          ping 127.0.0.1 -n 10 > nul
           cd ..
           dotnet test
           exit 1
