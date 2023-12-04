@@ -10,8 +10,9 @@ public class SeleniumTests
     public void Initialize()
     {
         ChromeOptions options = new ChromeOptions();
+        options.AddArguments("--ignore-ssl-errors=yes");
         options.AddArguments("ignore-certificate-errors");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
     }
 
     [Test]
