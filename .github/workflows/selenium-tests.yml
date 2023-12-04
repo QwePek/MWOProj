@@ -1,0 +1,42 @@
+name: CI/CD with Selenium and Azure DevOps
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.x
+        
+    - name: Restore dependencies
+      run: dotnet workload restore
+      
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Publish
+      run: dotnet publish -c Release -o Files\dotnet/app
+      
+    - name: Run app
+      run: | 
+          cd P05Shop.API
+          dotnet run --urls=https://localhost:7230;http://localhost:5093
+          # cmd /c "start dotnet run --urls=https://localhost:7230;http://localhost:5093"
+          cd ..
+          dotnet test
+          exit 1
+          
+    - name: Report error
+      if: failure()
+      run: |
+        echo "xpp"
