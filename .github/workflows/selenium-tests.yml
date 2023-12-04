@@ -16,7 +16,6 @@ jobs:
       with:
         mysql-version: "8.0"
         root-password: root
-        user: root
         password: root
 
     - run: mysql -uroot -e 'SELECT version()'
