@@ -30,7 +30,7 @@ jobs:
     - name: Add Migration
       run: |
           cd .\P05Shop.API\
-          dotnet tool restore
+          dotnet tool install --global dotnet-ef
           dotnet ef migrations add 20231106004814_ReleaseDateRequired
           dotnet ef database update
           cd ..
