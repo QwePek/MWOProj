@@ -24,6 +24,14 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
+    - name: Setup MySQL
+    - uses: samin/mysql-action@v1
+      with:
+        mysql database: 'testdatabase'
+        mysql root password: 'root'
+        mysql user: 'root'
+        mysql password: 'root'
+
     - name: Add Migration
       run: |
           cd .\P05Shop.API\
