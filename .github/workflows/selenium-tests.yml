@@ -24,8 +24,8 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
-    - name: Setup MySQL
-      uses: samin/mysql-action@v1
+    - name: Start MySQL
+      uses: samin/mysql-action@v1.3
       with:
         mysql database: 'testdatabase'
         mysql root password: 'root'
