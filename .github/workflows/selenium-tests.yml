@@ -29,8 +29,8 @@ jobs:
           cd .\P05Shop.API\
           dotnet tool install --global dotnet-ef
           # dotnet tool update --global dotnet-ef
-          # dotnet ef migrations add 20231106004814_ReleaseDateRequired
-          # dotnet ef database update
+          dotnet ef migrations add 20231106004814_ReleaseDateRequired
+          dotnet ef database update
           cd ..
 
     - name: Publish
