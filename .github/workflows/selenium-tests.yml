@@ -10,6 +10,18 @@ jobs:
   build:
     runs-on: windows-latest
 
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: testdatabase
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
     steps:
     - uses: actions/checkout@v3
     
@@ -24,6 +36,11 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+      
     - name: Add Migration
       run: |
           cd .\P05Shop.API\
