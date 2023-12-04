@@ -24,11 +24,12 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
-    - name: add migration
+    - name: Add Migration
       run: |
           cd .\P05Shop.API\
-          dotnet tool restore
-          dotnet ef migrations add mgrt1
+          dotnet tool install --global dotnet-ef
+          dotnet tool update --global dotnet-ef
+          dotnet ef migrations add 20231106004814_ReleaseDateRequired
           dotnet ef database update
           cd ..
 
