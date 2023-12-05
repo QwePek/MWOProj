@@ -15,10 +15,8 @@ jobs:
 
     - name: Find token
       run: |
-        echo "Azure DevOps Token: $AZURE_DEVOPS_TOKEN"
-      env:
-        AZURE_DEVOPS_TOKEN: ${{ secrets.AZUREPAT }}
-    
+        echo "Azure DevOps Token:  ${{ secrets.PUBLISH_PROFILE_DEV }}"
+        
     - name: Setup dataBase
       uses: shogo82148/actions-setup-mysql@v1.28.1
       with:
