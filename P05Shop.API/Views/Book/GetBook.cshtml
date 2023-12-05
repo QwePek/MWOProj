@@ -23,7 +23,7 @@
         <dd id="retPages">@Model.Data.Pages</dd>
 
         <dt>Release Date:</dt>
-        <dd id="retDate">@Model.Data.ReleaseDate</dd>
+        <dd id="retDate">@Model.Data.ReleaseDate.ToShortDateString()</dd>
     </dl>
 }
 else

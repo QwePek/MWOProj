@@ -89,7 +89,7 @@ public class SeleniumTests
         Assert.AreEqual("Test", Title.Text);
         Assert.AreEqual("TestDesc", Descr.Text);
         Assert.AreEqual("20", Pages.Text);
-        Assert.AreEqual("11.11.2023 00:00:00", Date.Text);
+        Assert.AreEqual("11.11.2023", Date.Text);
     }
 
     [Test]
@@ -148,7 +148,7 @@ public class SeleniumTests
         Title.SendKeys("TestUpdated");
         Descr.SendKeys("TestDescUpdated");
         Pages.SendKeys("25");
-        Date.SendKeys("11112023");
+        Date.SendKeys("10102023");
 
         var submitButton = driver.FindElement(By.TagName("button"));
         submitButton.Click();
@@ -182,12 +182,12 @@ public class SeleniumTests
         Assert.AreEqual("TestUpdated", Title.Text);
         Assert.AreEqual("TestDescUpdated", Descr.Text);
         Assert.AreEqual("25", Pages.Text);
-        Assert.AreEqual("11.11.2023 00:00:00", Date.Text);
+        Assert.AreEqual("10.10.2023", Date.Text);
     }
     
     void waitForLoad()
     {
-        Thread.Sleep(5000);
+        Thread.Sleep(3000);
     }
 
     [TearDown]
