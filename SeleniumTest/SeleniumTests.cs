@@ -10,7 +10,7 @@ public class SeleniumTests
     public void Initialize()
     {
         ChromeOptions options = new ChromeOptions();
-        options.AddArguments("--lang=en-EN");
+        //options.AddArguments("--lang=en-EN");
         options.AddArguments("--ignore-ssl-errors=yes");
         options.AddArguments("ignore-certificate-errors");
         driver = new ChromeDriver(options);
@@ -52,7 +52,7 @@ public class SeleniumTests
         Title.SendKeys("Test");
         Descr.SendKeys("TestDesc");
         Pages.SendKeys("20");
-        Date.SendKeys("27112023");
+        Date.SendKeys("11112023");
 
         var submitButton = driver.FindElement(By.TagName("button"));
         submitButton.Click();
@@ -89,7 +89,7 @@ public class SeleniumTests
         Assert.AreEqual("Test", Title.Text);
         Assert.AreEqual("TestDesc", Descr.Text);
         Assert.AreEqual("20", Pages.Text);
-        Assert.AreEqual("27.11.2023 00:00:00", Date.Text);
+        Assert.AreEqual("11.11.2023 00:00:00", Date.Text);
     }
 
     [Test]
@@ -148,7 +148,7 @@ public class SeleniumTests
         Title.SendKeys("TestUpdated");
         Descr.SendKeys("TestDescUpdated");
         Pages.SendKeys("25");
-        Date.SendKeys("28112023");
+        Date.SendKeys("11112023");
 
         var submitButton = driver.FindElement(By.TagName("button"));
         submitButton.Click();
@@ -182,7 +182,7 @@ public class SeleniumTests
         Assert.AreEqual("TestUpdated", Title.Text);
         Assert.AreEqual("TestDescUpdated", Descr.Text);
         Assert.AreEqual("25", Pages.Text);
-        Assert.AreEqual("28.11.2023 00:00:00", Date.Text);
+        Assert.AreEqual("11.11.2023 00:00:00", Date.Text);
     }
     
     void waitForLoad()
