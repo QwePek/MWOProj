@@ -12,11 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: Find token
-      run: |
-        echo "Azure DevOps Token:  ${{ secrets.AZUREPAT }}"
-        
+    
     - name: Setup dataBase
       uses: shogo82148/actions-setup-mysql@v1.28.1
       with:
@@ -68,9 +64,7 @@ jobs:
           "from": null,
           "value": "UI test failed"
         }]' > workitem.json
-        echo "Azure DevOps Token: $AZURE_DEVOPS_TOKEN"
+        echo "Azure DevOps Token: ${{ secrets.AZUREPAT }}"
         echo "API URL: https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3"
-        curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic ${{ secrets.PAT }}" --data "@ticket.json" "https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
+        curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic ${{ secrets.AZUREPAT }}" --data "@ticket.json" "https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
         cat response.json
-      env:
-        AZURE_DEVOPS_TOKEN: ${{ secrets.AZUREPAT }}
