@@ -22,7 +22,8 @@ jobs:
 
     - name: Create database
       run: |
-        mysql
+        mysql -u root -p
+        root
         CREATE DATABASE testdatabase
         USE testdatabase
         CREATE TABLE books(
