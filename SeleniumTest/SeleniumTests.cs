@@ -187,7 +187,7 @@ public class SeleniumTests
     
     void waitForLoad()
     {
-        Thread.Sleep(3000);
+        Thread.Sleep(5000);
     }
 
     [TearDown]
