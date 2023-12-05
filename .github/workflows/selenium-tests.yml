@@ -66,5 +66,5 @@ jobs:
         }]' > workitem.json
         echo "Azure DevOps Token: ${{ secrets.AZUREPAT }}"
         echo "API URL: https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3"
-        curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic ${{ secrets.AZUREPAT }}" --data "@ticket.json" "https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
+        curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic ${{ secrets.AZUREPAT }}" --data "@workitem.json" "https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
         cat response.json
