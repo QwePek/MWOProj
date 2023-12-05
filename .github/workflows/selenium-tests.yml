@@ -17,7 +17,6 @@ jobs:
       uses: shogo82148/actions-setup-mysql@v1.28.1
       with:
         mysql-version: "8.0"
-        password: root
 
     - name: Create database
       run: mysql -u root -e "CREATE DATABASE IF NOT EXISTS testdatabase; USE testdatabase; CREATE TABLE books (Id INT PRIMARY KEY AUTO_INCREMENT, Description TEXT NOT NULL, Pages INT, ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL); CREATE TABLE Products (Id INT PRIMARY KEY AUTO_INCREMENT, Barcode VARCHAR(12) NOT NULL, Description TEXT NOT NULL, Price DECIMAL(8,2), ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL);"
