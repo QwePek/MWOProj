@@ -10,6 +10,7 @@ public class SeleniumTests
     public void Initialize()
     {
         ChromeOptions options = new ChromeOptions();
+        options.AddArguments("--lang=en-EN");
         options.AddArguments("--ignore-ssl-errors=yes");
         options.AddArguments("ignore-certificate-errors");
         driver = new ChromeDriver(options);
@@ -19,8 +20,6 @@ public class SeleniumTests
     public void PageNavigationTest()
     {
         driver.Navigate().GoToUrl("https://localhost:7230");
-        Console.WriteLine(driver.Url);
-        Console.WriteLine(driver.PageSource);
         Assert.IsTrue(driver.Title.Contains("Get All books"));
 
         driver.Navigate().GoToUrl("https://localhost:7230/AddBook");
@@ -53,7 +52,7 @@ public class SeleniumTests
         Title.SendKeys("Test");
         Descr.SendKeys("TestDesc");
         Pages.SendKeys("20");
-        Date.SendKeys("11272023");
+        Date.SendKeys("27112023");
 
         var submitButton = driver.FindElement(By.TagName("button"));
         submitButton.Click();
@@ -149,7 +148,7 @@ public class SeleniumTests
         Title.SendKeys("TestUpdated");
         Descr.SendKeys("TestDescUpdated");
         Pages.SendKeys("25");
-        Date.SendKeys("11282023");
+        Date.SendKeys("28112023");
 
         var submitButton = driver.FindElement(By.TagName("button"));
         submitButton.Click();
