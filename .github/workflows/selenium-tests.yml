@@ -19,12 +19,14 @@ jobs:
         mysql-version: "8.0"
 
     - name: Create database
-      run: mysql -u root -e "CREATE DATABASE IF NOT EXISTS testdatabase; USE testdatabase; CREATE TABLE books (Id INT PRIMARY KEY AUTO_INCREMENT, Description TEXT NOT NULL, Pages INT, ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL); CREATE TABLE Products (Id INT PRIMARY KEY AUTO_INCREMENT, Barcode VARCHAR(12) NOT NULL, Description TEXT NOT NULL, Price DECIMAL(8,2), ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL);"
+      run: mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS testdatabase; USE testdatabase; CREATE TABLE books (Id INT PRIMARY KEY AUTO_INCREMENT, Description TEXT NOT NULL, Pages INT, ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL); CREATE TABLE Products (Id INT PRIMARY KEY AUTO_INCREMENT, Barcode VARCHAR(12) NOT NULL, Description TEXT NOT NULL, Price DECIMAL(8,2), ReleaseDate DATETIME, Title VARCHAR(100) NOT NULL);"
             
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.x
+        root-password: root
+        password: root
         
     - name: Restore dependencies
       run: dotnet workload restore
