@@ -12,6 +12,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Find token
+      run: |
+        echo "Azure DevOps Token: $AZURE_DEVOPS_TOKEN"
+      env:
+        AZURE_DEVOPS_TOKEN: ${{ secrets.AZUREPAT }}
     
     - name: Setup dataBase
       uses: shogo82148/actions-setup-mysql@v1.28.1
