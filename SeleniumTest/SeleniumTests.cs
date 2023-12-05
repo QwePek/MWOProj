@@ -89,7 +89,7 @@ public class SeleniumTests
         Assert.AreEqual("Test", Title.Text);
         Assert.AreEqual("TestDesc", Descr.Text);
         Assert.AreEqual("20", Pages.Text);
-        Assert.AreEqual("11.11.2023", Date.Text);
+        Assert.AreEqual("11.11.2023", Date.Text.Replace('/', '.'));
     }
 
     [Test]
@@ -182,7 +182,7 @@ public class SeleniumTests
         Assert.AreEqual("TestUpdated", Title.Text);
         Assert.AreEqual("TestDescUpdated", Descr.Text);
         Assert.AreEqual("25", Pages.Text);
-        Assert.AreEqual("10.10.2023", Date.Text);
+        Assert.AreEqual("10.10.2023", Date.Text.Replace('/','.'));
     }
     
     void waitForLoad()
