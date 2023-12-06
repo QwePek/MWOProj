@@ -50,7 +50,7 @@ jobs:
     - name: Run app
       run: | 
           cd .\P05Shop.API\
-          cmd /c "start dotnet run --urls=https://localhost:7231;"
+          cmd /c "start dotnet run --urls=https://localhost:7230;"
           ping 127.0.0.1 -n 10 > nul
           cd ..
           dotnet test
@@ -68,3 +68,9 @@ jobs:
         echo "API URL: https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3"
         curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic ${{ secrets.AZUREPAT }}" --data "@workitem.json" "https://dev.azure.com/01169535/MWO%20Project/_apis/wit/workitems/%24Issue?api-version=7.1-preview.3" -o response.json
         cat response.json
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v3
+      with:
+        name: .net-app
+        path: Files\dotnet/app
